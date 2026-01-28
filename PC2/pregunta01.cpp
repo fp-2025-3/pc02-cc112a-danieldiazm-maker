@@ -40,18 +40,27 @@ void derivadaK(
 
     // Complete la función auxiliar para imprimir un polinomio
     void imprimirPolinomio(const double* p, int grado) {
-        for(int i = 0;i <= grado; ++i){ //Viendo diversos casos si es i=0; no poner el x^0 sino solo el numero y cuando queda +- no poner el +;
-            if(i==0){
+        for(int i = grado;i >= 0; --i){ //Viendo diversos casos si es i=0; no poner el x^0 sino solo el numero y cuando queda +- no poner el +;
+            if(i==grado){
                 if(*(p+i)==0){
-                    ;
                 }
                 else{
-                    cout<<*(p+i);
+                    cout<<*(p+i)<<"x^"<<i;
+                }
+            }
+            else if(i==0){
+                if(*(p+i)==0){
+                }
+                else if(*(p+i)<0){
+                    cout<<" "<<*(p+i);
+                }
+                else{
+                    cout<<" + "<<*(p+i);
                 }
             }
             else{
                 if(*(p+i) > 0){
-                    cout<<" + ";
+                    cout<<" + "<<*(p+i)<<"x^"<<i;
                 }
 
                 else if(*(p+i) == 0){
@@ -59,9 +68,8 @@ void derivadaK(
                 }
 
                 else{
-                    cout<<" ";
+                    cout<<" "<<*(p+i)<<"x^"<<i;
                 }
-                cout<<*(p+i)<<"x^"<<i;
             }
             
         }
@@ -70,13 +78,13 @@ void derivadaK(
     int main() {
         // Polinomio:
         // P(x) = 2 + 3x - x^2 + 4x^3
-        double coef[] = {2, 0, -1, 4};
+        double coef[] = {2, 3 , -1, 4};
         const int grado = 3;
 
         double resultado[10]={0}; // espacio suficiente
         int gradoResultado=0;
 
-    int k = 1; // derivada de orden 2
+    int k = 2; // derivada de orden 2
 
     // Llamar a su funcion derivadaK
     cout<<"Polinomio original: "<<endl;

@@ -35,10 +35,10 @@ int main(){
 
     cout<<"Submatriz de suma maxima: "<<endl;
 
-    cout << "Ingrese esquina superior izquierda (i1,j1): ";
+    cout << "Ingrese esquina superior izquierda: ";
     cin >> basura >> i1 >> basura >> j1 >> basura;
     
-    cout << "Ingrese esquina inferior derecha (i1,j1): ";
+    cout << "Ingrese esquina inferior derecha: ";
     cin >> basura >> i2 >> basura >> j2 >> basura;
 
     cout << "Suma maxima: "<<SumaSubmatriz(p,i1,j1,i2,j2)<<endl;
