@@ -29,6 +29,7 @@ void imprimir(char* palabras[], int n);
 int main(){
     char frase[] = "aprender punteros exige mucha logica y practica";
     char* palabras[50];  // arreglo de punteros a palabras
+    separar_palabras(frase, palabras);
 
 
     return 0;
