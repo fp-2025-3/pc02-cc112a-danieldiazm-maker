@@ -13,7 +13,7 @@ void Burburja(int arr[],int n){
             if(arr[j] > arr[j+1]){
                 swap(arr[j],arr[j+1]);
             }
-        }
+        }   
     }
 }
 bool Esta_1(int arr[],int n, int k){
