@@ -24,7 +24,7 @@ void filtrar(int* &c, double* &p, int &n){
     int cont = 0;
     for(int i = 0; i < n; i++){
         if(*(p + i) >= 10){
-            cont++; 
+            cont++;
         }
     }
 
