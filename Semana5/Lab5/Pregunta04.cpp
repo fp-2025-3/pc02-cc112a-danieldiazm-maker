@@ -23,7 +23,7 @@ void Rellenar(Polinomio *P1){
 
 int main(){
     Polinomio *P1 = new Polinomio[2];
-    Rellenar(P1);
+    Rellenar(P1);  
 
-    return 0;
+    return 0;    
 }
