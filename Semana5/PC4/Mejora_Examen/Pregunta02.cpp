@@ -60,7 +60,7 @@ void Ordenar(Futbol *F1,int n){
                 if(F1[j].DG < F1[j+1].DG){
                     swap(F1[j],F1[j+1]);
                 }
-                if(F1[j].DG == F1[j+1].DG){
+                if(F1[j].DG == F1[j+1].DG){ // Se agregi la regla si es misma diferencia de goles, sea un mejor lugar el que tiene mas goles a favor
                     if(F1[j].GF < F1[j+1].GF){
                         swap(F1[j],F1[j+1]);
                     }
@@ -72,7 +72,7 @@ void Ordenar(Futbol *F1,int n){
 
 void Imprimir(Futbol *F1,int n){
     cout << "Seleccion"<< "\tPG"<< "\tPE" << "\tPP" << "\tGF" << "\tGC" << "\tDG" << "\tPts" << "\tRend(%)"<< endl;
-    cout.precision(3);
+    cout.precision(3); // Se agrego precision para tres cifras significativas
     for(int i = 0; i < n; i++){
         cout<<"Pais_"<<F1[i].pais<<"\t\t"<<F1[i].PG<<"\t"<<F1[i].PE<<"\t"<<F1[i].PP<<"\t"<<F1[i].GF<<"\t"<<F1[i].GC<<"\t"<<F1[i].DG<<"\t"<<F1[i].Puntaje<<"\t"<<F1[i].Rendimiento<<endl;
     }
