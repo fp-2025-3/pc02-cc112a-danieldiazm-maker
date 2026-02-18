@@ -35,11 +35,11 @@ Producto* crearInventario(int n){
     Producto* inventario = new Producto[n]; // Reservamos memoria dinámica para n productos
 
     // Datos dados en el examen
-    inventario[0] = crearProducto(100, "Teclado", 10.5, 5);
-    inventario[1] = crearProducto(101, "Mouse", 21.0, 10);
-    inventario[2] = crearProducto(102, "Monitor", 31.5, 15);
-    inventario[3] = crearProducto(103, "Laptop", 42.0, 20);
-    inventario[4] = crearProducto(104, "Impresora", 52.5, 25);
+    inventario[0] = crearProducto(100, "Procesador", 975.0, 12);
+    inventario[1] = crearProducto(101, "Tarjeta Grafica", 1650.0, 18);
+    inventario[2] = crearProducto(102, "Monitor", 275.0, 15);
+    inventario[3] = crearProducto(103, "Laptop", 2050.0, 20);
+    inventario[4] = crearProducto(104, "Impresora", 675.0, 25);
 
     return inventario;
 }
@@ -78,12 +78,15 @@ int main() {
 
     imprimir(miInventario, n);
 
-    cout << "\nBuscando producto con codigo 102..." << endl;
+    cout << "\nBuscando producto con codigo 104..." << endl;
 
-    Producto* pEncontrado = buscarProducto(miInventario, n, 102); // Buscamos producto y recibimos puntero
+    Producto* pEncontrado = buscarProducto(miInventario, n, 104); // Buscamos producto y recibimos puntero
 
     if(pEncontrado != nullptr){
         cout << "Producto encontrado: " << pEncontrado->nombre << " | Precio: " << pEncontrado->precio << endl;
+    }
+    else{
+        cout << "ERROR: Producto no encontrado" << endl;
     }
 
     liberarInventario(miInventario, n); // Liberamos la memoria

@@ -14,7 +14,7 @@ void MostrarPolinomio(const char* nombre, Polinomio P1){ // Una forma de nombrar
         }
         
         if(i < P1.n && P1.coeficiente[i] != 0){ // Esto se pone porque cuanod el coeficiente sea 0 no queremos que se imprima el x^ (P1.n - i)
-            if(P1.coeficiente[i+1] >= 0){
+            if(P1.coeficiente[i+1] > 0){
                 cout << "x^" << P1.n - i << " + ";
             }
             else{
@@ -51,7 +51,7 @@ void Suma(Polinomio *P, int cantidad){
         }
         
         if(i < gradoMax && resultado[i] != 0){ // Se imprime el polinomio resultante de la suma
-            if(resultado[i+1] >= 0){
+            if(resultado[i+1] > 0){
                 cout << "x^" << gradoMax - i << " + ";
             }
             else{
@@ -96,7 +96,7 @@ void MultiplicarTres(Polinomio *P){
         }
         
         if(i < gradoTotal && resultado[i] != 0){ // Imprimimos el resultado de la multiplicacion de los tres poliniomio 
-            if(resultado[i+1] >= 0){
+            if(resultado[i+1] > 0){
                 cout << "x^" << gradoTotal - i << " + "; 
             }
             else{
@@ -113,13 +113,13 @@ void MultiplicarTres(Polinomio *P){
 int main(){
     Polinomio *P1 = new Polinomio[3];
     P1[0].n = 2;
-    P1[0].coeficiente = new int[P1[0].n + 1]{1,0,3}; // Otra forma de definir y resevar memoria
+    P1[0].coeficiente = new int[P1[0].n + 1]{-5,28,37}; // Otra forma de definir y resevar memoria
 
-    P1[1].n = 1;
-    P1[1].coeficiente = new int[P1[1].n + 1]{-4,5};
+    P1[1].n = 3;
+    P1[1].coeficiente = new int[P1[1].n + 1]{25,-5,-10,0};
 
-    P1[2].n = 2;
-    P1[2].coeficiente = new int[P1[2].n + 2]{3,0,1};
+    P1[2].n = 3;
+    P1[2].coeficiente = new int[P1[2].n + 2]{-38,26,-14,-2};
 
     MostrarPolinomio("Polinomio 1",P1[0]);
     MostrarPolinomio("Polinomio 2",P1[1]);
