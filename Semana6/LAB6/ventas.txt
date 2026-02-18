@@ -1,0 +1,13 @@
+18
+12
+13
+98
+5
+48
+54
+-------------------------
+RESUMEN
+Total: 248
+Promedio: 35.4286
+Mayor venta: 98
+Menor venta: 5
