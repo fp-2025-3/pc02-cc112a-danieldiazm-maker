@@ -6,7 +6,7 @@ using namespace std;
 const int DIAS = 7;
 
 int main() {
-    ofstream archivo("ventas.txt");
+    ofstream archivo("output/ventas.txt");
 
     if (!archivo) {
         cout << "Error al abrir el archivo";
@@ -54,4 +54,4 @@ int main() {
     cout << "Resumen generado con exito en ventas.txt" << endl;
 
     return 0;
-}
+}   

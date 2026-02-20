@@ -1,0 +1,8 @@
+REPORTE GENERAL
+------------------------
+Total de estudiantes: 9
+Promedio: 11.7778
+Mayor nota: 20
+Menor nota: 5
+Aprobados: 6
+Desaprobados: 3
