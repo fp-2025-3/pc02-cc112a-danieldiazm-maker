@@ -12,18 +12,18 @@ struct Producto {
     bool activo;             // true = activo, false = eliminado lógicamente
 };
 
-// Función para verificar si un ID ya existe (usada en registrar)
 int buscarProductoPorID(const char* nombreArchivo, int idBuscado) {
     ifstream archivo(nombreArchivo, ios::binary);
-    if (!archivo) return -1;
+    if (!archivo) {
+        return -1;
+    }
 
     Producto p;
     int pos = 0;
-    // Leemos registro por registro
     while (archivo.read(reinterpret_cast<char*>(&p), sizeof(Producto))) {
         if (p.id == idBuscado && p.activo) {
             archivo.close();
-            return pos; // Devuelve la posición física (0, 1, 2...)
+            return pos;
         }
         pos++;
     }
@@ -31,17 +31,16 @@ int buscarProductoPorID(const char* nombreArchivo, int idBuscado) {
     return -1;
 }
 
-// --- Funciones Principales ---
 
-// a) Registrar Producto
 void registrarProducto(const char* nombreArchivo) {
     ofstream archivo(nombreArchivo, ios::binary | ios::app);
-    if (!archivo) return;
+    if (!archivo) {
+        return;
+    }
 
     Producto p;
     cout << "Ingrese ID: "; cin >> p.id;
 
-    // Validación de ID único
     if (buscarProductoPorID(nombreArchivo, p.id) != -1) {
         cout << "Error: El ID ya existe.\n";
         archivo.close();
@@ -60,16 +59,16 @@ void registrarProducto(const char* nombreArchivo) {
 
     p.activo = true;
 
-    // Guardar la estructura completa como bloque (Teoría punto 7)
     archivo.write(reinterpret_cast<char*>(&p), sizeof(Producto));
     archivo.close();
     cout << "Producto registrado con exito.\n";
 }
 
-// b) Mostrar Productos
 void mostrarProductos(const char* nombreArchivo) {
     ifstream archivo(nombreArchivo, ios::binary);
-    if (!archivo) return;
+    if (!archivo){
+        return;
+    }
 
     Producto p;
     int pos = 0;
@@ -85,24 +84,22 @@ void mostrarProductos(const char* nombreArchivo) {
     archivo.close();
 }
 
-// d) Modificar Precio (Acceso Aleatorio)
 void modificarPrecio(const char* nombreArchivo, int id, double nuevoPrecio) {
-    // Abrir en modo lectura/escritura (Teoría punto 8)
     fstream archivo(nombreArchivo, ios::in | ios::out | ios::binary);
-    if (!archivo) return;
+    if (!archivo){
+        return;
+    }
 
     int pos = buscarProductoPorID(nombreArchivo, id);
     if (pos == -1) {
         cout << "Producto no encontrado.\n";
     } else {
         Producto p;
-        // Ubicarse en el registro exacto
         archivo.seekg(pos * sizeof(Producto));
         archivo.read(reinterpret_cast<char*>(&p), sizeof(Producto));
 
         p.precio = nuevoPrecio;
 
-        // Regresar a la misma posición para sobreescribir
         archivo.seekp(pos * sizeof(Producto));
         archivo.write(reinterpret_cast<char*>(&p), sizeof(Producto));
         cout << "Precio actualizado.\n";
@@ -110,10 +107,11 @@ void modificarPrecio(const char* nombreArchivo, int id, double nuevoPrecio) {
     archivo.close();
 }
 
-// e) Eliminar Producto (Lógico)
 void eliminarProducto(const char* nombreArchivo, int id) {
     fstream archivo(nombreArchivo, ios::in | ios::out | ios::binary);
-    if (!archivo) return;
+    if (!archivo) {
+        return;
+    }
 
     int pos = buscarProductoPorID(nombreArchivo, id);
     if (pos != -1) {
@@ -121,7 +119,7 @@ void eliminarProducto(const char* nombreArchivo, int id) {
         archivo.seekg(pos * sizeof(Producto));
         archivo.read(reinterpret_cast<char*>(&p), sizeof(Producto));
 
-        p.activo = false; // Eliminación lógica
+        p.activo = false;
 
         archivo.seekp(pos * sizeof(Producto));
         archivo.write(reinterpret_cast<char*>(&p), sizeof(Producto));
@@ -130,10 +128,11 @@ void eliminarProducto(const char* nombreArchivo, int id) {
     archivo.close();
 }
 
-// f) Calcular Valor Total
 double calcularValorInventario(const char* nombreArchivo) {
     ifstream archivo(nombreArchivo, ios::binary);
-    if (!archivo) return 0;
+    if (!archivo) {
+        return 0;
+    }
 
     Producto p;
     double total = 0;
