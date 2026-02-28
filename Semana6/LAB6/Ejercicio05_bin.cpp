@@ -2,12 +2,12 @@
 #include <fstream>
 using namespace std;
 
-void escribirFibonaciBinario() {
+void escribirFibonaciBinario(){
     long n1 = 0, n2 = 1, temp;
     int contador = 1;
     ofstream Escribir("input/fibonacci.bin", ios::binary); // ios::binary porque es un .bin
 
-    if (!Escribir) {
+    if(!Escribir){
         cout << "Error, no se pudo abrir fibonacci.bin";
         return;
     }
@@ -25,7 +25,7 @@ void escribirFibonaciBinario() {
     cout << "Terminos de Fibonacci escritos en el archivo correctamente." << endl << endl;
 }
 
-void leerFibonacciBinario() {
+void leerFibonacciBinario(){
     ifstream Leer("input/fibonacci.bin", ios::binary); // ios::binary porque es un .bin
     long valor;
     int contador = 1;
@@ -44,7 +44,7 @@ void leerFibonacciBinario() {
     Leer.close();
 }
 
-int main() {
+int main(){
     escribirFibonaciBinario();
     leerFibonacciBinario();
     return 0;
