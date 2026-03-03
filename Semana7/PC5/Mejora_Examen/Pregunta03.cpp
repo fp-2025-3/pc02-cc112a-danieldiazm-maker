@@ -1,24 +1,68 @@
-#include<iostream>
-#include<cmath>
-#include<fstream>
+#include <iostream>
+#include <cmath>
+#include <fstream>
+
 using namespace std;
 
-int main(){
-    ofstream Escribir("output/grafico.txt");
+void liberarLienzo(char** lienzo, int filas){
+    for(int i = 0; i < filas; i++){
+        delete[] lienzo[i];
+    }
+    delete[] lienzo;
+}
 
-    int puntos = 80, filas = 21, columnas = 80, contador = 1, Var_Vertical = 0.1;
-    long Var_Horisontal = 0.025 * M_PI;
+int main() {
+    const int FILAS = 21;
+    const int COLUMNAS = 80;
 
-    if(!Escribir){
-        cout << "ERROR: No se puedo abrir corectamente grafico.txt" << endl;
+    char** lienzo = new char*[FILAS];
+    for(int i = 0; i < FILAS; i++){
+        lienzo[i] = new char[COLUMNAS];
     }
 
-    while(contador <= puntos){
-        long a = sin(5 * Var_Horisontal * contador);
-        int b = 0;
-        Escribir << "*" ;
-        contador++;
+    for(int i = 0; i < FILAS; i++){
+        for(int j = 0; j < COLUMNAS; j++){
+            if (i == 10){
+                *(*(lienzo + i) + j) = '-'; // Eje X
+            }
+            else if (j == 0){
+                *(*(lienzo + i) + j) = '|'; // Eje Y
+            }
+            else{
+                *(*(lienzo + i) + j) = ' '; // Espacio vacío
+            }
+        }
     }
+
+    for(int j = 0; j < COLUMNAS; j++){ // Evaluamos y = sin(5x)
+        double x = (double)j * (2.0 * M_PI / (COLUMNAS - 1));
+        double y_val = sin(3 * x);
+
+        int fila = (int)round(10 - (y_val * 10)); // Redondeo
+
+        if(fila >= 0 && fila < FILAS){
+            *(*(lienzo + fila) + j) = '*';
+        }
+    }
+
+    ofstream grafica("output/grafico.txt");
+    if(!grafica){
+        cout << "Error al abrir archivo";
+        liberarLienzo(lienzo, FILAS);
+        return 1;
+    }
+
+    for(int i = 0; i < FILAS; i++){
+        for(int j = 0; j < COLUMNAS; j++){
+            grafica << lienzo[i][j];
+        }
+        grafica << endl;
+    }
+
+    grafica.close();
+    cout << "Grafico generado exitosamente." << endl;
+
+    liberarLienzo(lienzo, FILAS); // Liberacion de memoria
 
     return 0;
 }
