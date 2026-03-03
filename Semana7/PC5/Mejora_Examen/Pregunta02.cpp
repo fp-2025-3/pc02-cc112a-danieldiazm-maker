@@ -10,21 +10,20 @@ struct Empleado {
 };
 
 int main() {
-     // ios::in (lectura), ios::out (escritura), ios::binary (modo binario)
-    fstream archivo("input/empleados.dat", ios::in | ios::out | ios::binary);
+    fstream archivo("input/empleados.dat", ios::in | ios::out | ios::binary); // Recordar: ios::in (lectura), ios::out (escritura), ios::binary (modo binario)
 
     if (!archivo) {
         cout << "Error: No se pudo abrir el archivo input/empleados.dat" << endl;
         return 1;
     }
 
-    int idBusca;
+    int ID;
     cout << "Ingrese ID de empleado: ";
-    cin >> idBusca;
+    cin >> ID;
 
     // 1. CÁLCULO DE LA POSICIÓN (Acceso Directo)
     // El ID 1 está en el byte 0, el ID 2 en el byte 1 * sizeof(Empleado), etc.
-    streampos posicion = (idBusca - 1) * sizeof(Empleado);
+    streampos posicion = (ID - 1) * sizeof(Empleado);
 
     // 2. MOVER PUNTERO DE LECTURA (seekg)
     archivo.seekg(posicion);
@@ -51,7 +50,7 @@ int main() {
 
         cout << "\nSalario actualizado correctamente." << endl;
     } else {
-        cout << "Error: El ID " << idBusca << " no existe o esta fuera de rango." << endl;
+        cout << "Error: El ID " << ID << " no existe o esta fuera de rango." << endl;
     }
 
     archivo.close();

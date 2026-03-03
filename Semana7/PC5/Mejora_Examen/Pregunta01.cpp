@@ -7,10 +7,10 @@ int main(){
     ofstream Escribir("output/Alumnos.txt");
 
     if(!Leer){
-        cout << "Error: No se puedo abrir notas.txt" << endl;
+        cout << "Error: No se pudo abrir notas.txt" << endl;
     }
     if(!Escribir){
-        cout << "Error: No se puedo abrir Alumnos.txt" << endl;
+        cout << "Error: No se pudo abrir Alumnos.txt" << endl;
     }
 
     string nombre, Max, Min, condicion;
