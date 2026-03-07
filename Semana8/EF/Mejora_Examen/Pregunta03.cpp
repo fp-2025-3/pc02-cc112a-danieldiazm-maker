@@ -46,7 +46,7 @@ int main(){
     int contador = 0;
     Proyecto *P1 = new Proyecto[n];
 
-    ifstream ArchLeer("Input/proyectos.dat",ios::binary);
+    ifstream ArchLeer("proyectos.dat",ios::binary);
     if(ArchLeer){
         Proyecto temp;
 
@@ -64,7 +64,7 @@ int main(){
         cin >> opcion;
 
         if (opcion == 2){
-            Proyecto nuevo;
+            Proyecto nuevo = {};
             cout << "Digite el id: ";
             cin >> nuevo.id;
 
@@ -89,7 +89,7 @@ int main(){
 
                 Ordenar(P1, contador);
 
-                ofstream ArchEscribir("Input/proyectos.dat",ios::binary);
+                ofstream ArchEscribir("proyectos.dat",ios::binary);
                 for(int i = 0; i < contador; i++){
                     ArchEscribir.write(reinterpret_cast<char*>(&P1[i]), sizeof(Proyecto));
                 }
